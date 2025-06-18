@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Header } from "./components/header/header";
 import { UserInput } from "./components/user-input/user-input";
 import { InvestmentResults } from './components/investment-results/investment-results';
@@ -12,14 +12,14 @@ import { InvestmentInputModel } from './models/investment-input.model';
 })
 export class App {
   protected title = 'essentials-practice';
-  resultsData?: {
-    year: number,
-    interest: number,
-    valueEndOfYear: number,
-    annualInvestment: number,
-    totalInterest: number,
-    totalAmountInvested: number,
-  }[];
+  resultsData = signal<{
+        year: number,
+        interest: number,
+        valueEndOfYear: number,
+        annualInvestment: number,
+        totalInterest: number,
+        totalAmountInvested: number,
+      }[] | undefined>(undefined);
 
   onCalculateInvestmentResults(data: InvestmentInputModel) {
     // destructure the data
@@ -42,7 +42,7 @@ export class App {
         totalAmountInvested: initialInvestment + annualInvestment * year,
       });
     }
-    this.resultsData = annualData;
+    this.resultsData.set(annualData);
 
     console.log(annualData);
     // return this.resultsData;
