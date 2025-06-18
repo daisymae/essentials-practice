@@ -1,13 +1,11 @@
-import { Component, output, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { InvestmentInputModel } from '../../models/investment-input.model';
+import { Component, signal } from '@angular/core';
 import { InvestmentService } from '../../services/investment.service';
 
 @Component({
   selector: 'app-user-input',
-  imports: [FormsModule],
   templateUrl: './user-input.html',
-  styleUrl: './user-input.css'
+  styleUrl: './user-input.css',
+  standalone: false
 })
 export class UserInput {
 // calculate = output<InvestmentInputModel>();
