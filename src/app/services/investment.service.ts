@@ -5,23 +5,23 @@ import { InvestmentInputModel } from '../models/investment-input.model';
   providedIn: 'root'
 })
 export class InvestmentService {
-  // resultsData = signal<{
-  //       year: number,
-  //       interest: number,
-  //       valueEndOfYear: number,
-  //       annualInvestment: number,
-  //       totalInterest: number,
-  //       totalAmountInvested: number,
-  //     }[] | undefined>(undefined);
-
-  resultsData?:{
+  resultsData = signal<{
         year: number,
         interest: number,
         valueEndOfYear: number,
         annualInvestment: number,
         totalInterest: number,
         totalAmountInvested: number,
-      }[];
+      }[] | undefined>(undefined);
+
+  // resultsData?:{
+  //       year: number,
+  //       interest: number,
+  //       valueEndOfYear: number,
+  //       annualInvestment: number,
+  //       totalInterest: number,
+  //       totalAmountInvested: number,
+  //     }[];
 
   constructor() { }
 
@@ -46,10 +46,8 @@ export class InvestmentService {
         totalAmountInvested: initialInvestment + annualInvestment * year,
       });
     }
-    // this.resultsData.set(annualData);
-    this.resultsData = annualData;
+    this.resultsData.set(annualData);
 
     console.log(annualData);
-    // return this.resultsData;
   }
 }
